@@ -11,6 +11,7 @@ import time
 #url from the IP webcam
 URL = "http://192.168.0.15:8080/shot.jpg"
 
+# função de pegar a imagem pelo app
 def getImage():
     img_resp = requests.get(URL)
     img_arr = np.array(bytearray(img_resp.content), dtype = np.uint8)
@@ -18,6 +19,8 @@ def getImage():
     img = imutils.resize(img, width=1000, height=1800)
     return img
 
+# essa é a função da thread, que é rodar independemente do main 
+# para salvar as fotos em outro local
 def thread_function(i):
     for j in range(0, i):
         pic = getImage()
