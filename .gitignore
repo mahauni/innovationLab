@@ -1,2 +1,4 @@
 # ignore all jpg files
-*.jpg
+/images
+
+/threadSolution
