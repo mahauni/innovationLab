@@ -9,11 +9,11 @@ import time
 #import urllib.request
 
 #url from the IP webcam
-URL = "http://192.168.0.15:8080/shot.jpg"
+#URL = "http://192.168.0.15:8080/shot.jpg"
 
 # função de pegar a imagem pelo app
-def getImage():
-    img_resp = requests.get(URL)
+def getImage(url):
+    img_resp = requests.get(url)
     img_arr = np.array(bytearray(img_resp.content), dtype = np.uint8)
     img = cv2.imdecode(img_arr, -1)
     img = imutils.resize(img, width=1000, height=1800)
@@ -23,7 +23,7 @@ def getImage():
 # para salvar as fotos em outro local
 def thread_function(i):
     for j in range(0, i):
-        pic = getImage()
+        pic = getImage("http://192.168.0.15:8080/shot.jpg")
         cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
         time.sleep(1)
 
