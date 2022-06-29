@@ -10,6 +10,17 @@ import time
 
 #url from the IP webcam
 #URL = "http://192.168.0.15:8080/shot.jpg"
+ 
+#not tested this version, only with the non alteration one. (the commented one)
+def main():
+    #create the directory images
+    if not os.path.exists("images"):
+        os.mkdir("images")
+
+    # Começa a thread que vai fazer as fotos serem tiradas
+    x = threading.Thread(target=thread_function, args=(5,), daemon=True)
+    x.start()
+    x.join()
 
 # função de pegar a imagem pelo app
 def getImage(url):
@@ -25,18 +36,16 @@ def thread_function(i):
     for j in range(0, i):
         pic = getImage("http://192.168.0.15:8080/shot.jpg")
         cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
+        sharpen_photo(j)
+        print("photo "+str(j)+" taken")
         time.sleep(1)
 
-#not tested this version, only with the non alteration one. (the commented one)
-def main():
-    #create the directory images
-    if not os.path.exists("images"):
-        os.mkdir("images")
-
-    # Começa a thread que vai fazer as fotos serem tiradas
-    x = threading.Thread(target=thread_function, args=(5,), daemon=True)
-    x.start()
-    x.join()
+def sharpen_photo(j):
+    image = cv2.imread("./images/pic"+str(j)+".jpg")
+    sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+    sharpen = cv2.filter2D(image, -1, sharpen_kernel)
+    cv2.imwrite("./images/pic"+str(j)+".jpg", sharpen)
+    
 
 # Main
 if __name__ == "__main__":
