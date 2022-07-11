@@ -8,8 +8,8 @@ import threading
 import time
 #import urllib.request
 
-#url from the IP webcam
-#URL = "http://192.168.0.15:8080/shot.jpg"
+# URL from the IP webcam
+URL = "http://192.168.0.15:8080/shot.jpg"
  
 #not tested this version, only with the non alteration one. (the commented one)
 def main():
@@ -21,6 +21,18 @@ def main():
     x = threading.Thread(target=thread_function, args=(5,), daemon=True)
     x.start()
     x.join()
+
+    # Photos done and in the images dir
+    print("Done!")
+    print("After the process of virtualization.")
+    input("Type enter to continue the process!")
+    
+    # Here the file executed, is the file of saving the 3D image
+    exec(open("./filename").read())
+## Find a way to know when the file is done and stop when its not done
+
+    ## after this point is make a func to send the image 3d to the customer input (email for example)
+
 
 # função de pegar a imagem pelo app
 def getImage(url):
@@ -34,7 +46,7 @@ def getImage(url):
 # para salvar as fotos em outro local
 def thread_function(i):
     for j in range(0, i):
-        pic = getImage("http://192.168.0.15:8080/shot.jpg")
+        pic = getImage(URL)
         cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
         sharpen_photo(j)
         print("photo "+str(j)+" taken")
