@@ -9,7 +9,7 @@ import time
 #import urllib.request
 
 # URL from the IP webcam
-URL = "http://192.168.0.15:8080/shot.jpg"
+URL = "http://192.168.0.25:8080/shot.jpg"
  
 #not tested this version, only with the non alteration one. (the commented one)
 def main():
@@ -18,9 +18,9 @@ def main():
         os.mkdir("images")
 
     # Começa a thread que vai fazer as fotos serem tiradas
-    x = threading.Thread(target=thread_function, args=(5,), daemon=True)
-    x.start()
-    x.join()
+    #x = threading.Thread(target=thread_function, args=(5,), daemon=True)
+   # x.start()
+   # x.join()
 
     # Photos done and in the images dir
     print("Done!")
@@ -28,7 +28,7 @@ def main():
     input("Type enter to continue the process!")
     
     # Here the file executed, is the file of saving the 3D image
-    exec(open("./filename").read())
+    os.system("start ./DAZ3D_Scripts/SavePerson.dsa")
 ## Find a way to know when the file is done and stop when its not done
 
     ## after this point is make a func to send the image 3d to the customer input (email for example)
