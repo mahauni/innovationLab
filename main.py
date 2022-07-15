@@ -18,9 +18,9 @@ def main():
         os.mkdir("images")
 
     # Começa a thread que vai fazer as fotos serem tiradas
-    #x = threading.Thread(target=thread_function, args=(5,), daemon=True)
-   # x.start()
-   # x.join()
+    x = threading.Thread(target=thread_function, args=(2,), daemon=True)
+    x.start()
+    x.join()
 
     # Photos done and in the images dir
     print("Done!")
@@ -39,7 +39,7 @@ def getImage(url):
     img_resp = requests.get(url)
     img_arr = np.array(bytearray(img_resp.content), dtype = np.uint8)
     img = cv2.imdecode(img_arr, -1)
-    img = imutils.resize(img, width=1000, height=1800)
+    img = imutils.resize(img, width=600, height=1200)
     return img
 
 # essa é a função da thread, que é rodar independemente do main 
@@ -48,7 +48,7 @@ def thread_function(i):
     for j in range(0, i):
         pic = getImage(URL)
         cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
-        sharpen_photo(j)
+        sharpen_photo(0)
         print("photo "+str(j)+" taken")
         time.sleep(1)
 
@@ -56,7 +56,7 @@ def sharpen_photo(j):
     image = cv2.imread("./images/pic"+str(j)+".jpg")
     sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
     sharpen = cv2.filter2D(image, -1, sharpen_kernel)
-    cv2.imwrite("./images/pic"+str(j)+".jpg", sharpen)
+    cv2.imwrite("./images/sharpenPic"+str(j)+".jpg", sharpen)
     
 
 # Main
