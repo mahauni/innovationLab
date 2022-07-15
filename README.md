@@ -1,4 +1,6 @@
 # isso é o arquivo principal do innovation lab
+
+Made in pyton 3.9.13
  
  Para fazer o aplicativo funcionar, você precisa do app IP Webcam
  Possivel instalar com a app store, tem nela
@@ -9,3 +11,7 @@
  Possible to install it in the app store, it has in it
  If there are other possibles apps and ways to do the save image thing, Im all ears
  And in the constant URL, you will need to put your device url to make it work
+
+
+install dependencies with: 
+pip install -r requirements.txt
