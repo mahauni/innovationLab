@@ -27,6 +27,11 @@ def main():
     print("After the process of virtualization.")
     input("Type enter to continue the process!")
     
+    # Cosmetics selection
+    inp = input("Want to add hair? (YES) (NO)")
+    if (inp.upper() == "YES"):
+        Hair()
+
     # Here the file executed, is the file of saving the 3D image
     os.system("start ./DAZ3D_Scripts/SavePerson.dsa")
 ## Find a way to know when the file is done and stop when its not done
@@ -58,6 +63,9 @@ def sharpen_photo(j):
     sharpen = cv2.filter2D(image, -1, sharpen_kernel)
     cv2.imwrite("./images/sharpenPic"+str(j)+".jpg", sharpen)
     
+def Hair():
+    os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
+
 
 # Main
 if __name__ == "__main__":
