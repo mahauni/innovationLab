@@ -1,0 +1,30 @@
+// DAZ Studio version 4.15.0.2 filetype DAZ Script
+(function(){
+		var aScenesToRender = ["C:/LucasRaoni/innovationLab/scene/scene.duf"]
+		var sOutputFolder = "C:/LucasRaoni/innovationLab"
+	   	var oAssetIOMgr = App.getAssetIOMgr();
+   	   	for(var i = 0; i< aScenesToRender.length; i++){
+			var sScenePath = aScenesToRender[i]
+			var sPathSplits = sScenePath.split("/")
+			var sSceneName = sPathSplits[sPathSplits.length - 1]
+			var sRenderName = sSceneName.replace(".duf",".png")
+			var sRenderPath = sOutputFolder + sRenderName
+			print(sSceneName, sRenderPath)
+			var oResult = oAssetIOMgr.doLoad(sScenePath)
+			if (oResult.valueOf() != 0){
+				print('error message: ', oResult.valueOf(), getErrorMessage(oResult))
+			}
+			var oRenderMgr = App.getRenderMgr();
+			var oRenderer = oRenderMgr.getActiveRenderer();
+			if( !oRenderer ){
+				MessageBox.critical( text( "An active renderer could not be found." ),
+				text( "Resource Error" ), text( "&OK" ) );
+				return;
+			}
+			var oRenderOptions = oRenderMgr.getRenderOptions();
+			oRenderOptions.renderImgFilename = sRenderPath
+			oRenderOptions.showPreview = false;
+			oRenderMgr.doRender( oRenderOptions );
+		}
+		print("My job here is done!")
+	})();

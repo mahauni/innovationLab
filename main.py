@@ -9,7 +9,7 @@ import time
 #import urllib.request
 
 # URL from the IP webcam
-URL = "http://192.168.0.25:8080/shot.jpg"
+URL = "http://192.168.0.15:8080/shot.jpg"
  
 #not tested this version, only with the non alteration one. (the commented one)
 def main():
@@ -28,12 +28,16 @@ def main():
     input("Type enter to continue the process!")
     
     # Cosmetics selection
-    inp = input("Want to add hair? (YES) (NO)")
-    if (inp.upper() == "YES"):
-        Hair()
+    #inp = input("Want to add hair? (YES) (NO)")
+    #if (inp.upper() == "YES"):
+    #    Hair()
+    
+    #input("Type enter to continue the process!")
 
     # Here the file executed, is the file of saving the 3D image
-    os.system("start ./DAZ3D_Scripts/SavePerson.dsa")
+    os.system("start ./DAZ3D_Scripts/poseTest.duf")
+    input("Type enter to continue the process!")
+    os.system("start ./DAZ3D_Scripts/takePhoto.dsa")
 ## Find a way to know when the file is done and stop when its not done
 
     ## after this point is make a func to send the image 3d to the customer input (email for example)
