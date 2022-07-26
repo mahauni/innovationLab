@@ -6,6 +6,8 @@ import requests
 import imutils
 import threading
 import time
+from tabulate import tabulate
+import ast
 #import urllib.request
 
 # URL from the IP webcam
@@ -14,6 +16,9 @@ URL = "http://192.168.0.15:8080/shot.jpg"
 #not tested this version, only with the non alteration one. (the commented one)
 def main():
     #create the directory images
+    table = [['ID', 'Sexo', 'Cabelo', 'Acessorio', 'Imagem'], ['0', 'M', 4, 2, './imagens/pic0.jpg']]
+    # with open('./tables/table.txt', 'w') as f:
+    #     f.write(tabulate(table, headers='firstrow', tablefmt='fancy_grid'))
     if not os.path.exists("images"):
         os.mkdir("images")
 
@@ -38,7 +43,7 @@ def main():
         accessories = int(input("Which type of hair do you like (1) (2) (3) (4)"))
         Accessories(accessories)
     
-    #input("Type enter to continue the process!")
+    input("Type enter to continue the process!")
 
     # It makes the pose to take the photo
     os.system("start ./DAZ3D_Scripts/poseTest.duf")

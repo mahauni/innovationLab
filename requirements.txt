@@ -2,3 +2,5 @@ opencv-python
 imutils
 requests
 numpy
+tabulate
+ast
