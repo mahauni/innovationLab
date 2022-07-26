@@ -13,17 +13,13 @@ import ast
 # URL from the IP webcam
 URL = "http://192.168.0.15:8080/shot.jpg"
  
-#not tested this version, only with the non alteration one. (the commented one)
 def main():
-    #create the directory images
-    table = [['ID', 'Sexo', 'Cabelo', 'Acessorio', 'Imagem'], ['0', 'M', 4, 2, './imagens/pic0.jpg']]
-    # with open('./tables/table.txt', 'w') as f:
-    #     f.write(tabulate(table, headers='firstrow', tablefmt='fancy_grid'))
+    # create the directory images
     if not os.path.exists("images"):
         os.mkdir("images")
 
     # Começa a thread que vai fazer as fotos serem tiradas
-    x = threading.Thread(target=thread_function, args=(2,), daemon=True)
+    x = threading.Thread(target=thread_function, args=(1,), daemon=True)
     x.start()
     x.join()
 
@@ -31,16 +27,22 @@ def main():
     print("Done!")
     print("After the process of virtualization.")
     input("Type enter to continue the process!")
+
+    name = input("Type your name: ")
+
+    email = input("Type your email: ")
     
+    sex = input("Which sex are you? (M) (F): ")
+
     # Cosmetics selection
-    inp = input("Want to add hair? (Y) (N)")
+    inp = input("Want to add hair? (Y) (N): ")
     if (inp.upper() == "Y"):
-        hair = int(input("Which type of hair do you like (1) (2) (3) (4)"))
+        hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
         Hair(hair)
 
-    inp = input("Want to add accessories? (Y) (N)")
+    inp = input("Want to add accessories? (Y) (N): ")
     if (inp.upper() == "Y"):
-        accessories = int(input("Which type of hair do you like (1) (2) (3) (4)"))
+        accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
         Accessories(accessories)
     
     input("Type enter to continue the process!")
@@ -53,8 +55,20 @@ def main():
     os.system("start ./DAZ3D_Scripts/takePhoto.dsa")
 ## Find a way to know when the file is done and stop when its not done
 
-    ## after this point is make a func to send the image 3d to the customer input (email for example)
+    # Open the table for the arquive
+    f = open('./tables/listTable.txt', 'r')
+    file_contents = f.read()
+    lista = ast.literal_eval(file_contents)
+    f.close()
 
+    user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
+
+    # Add the user
+    lista.append(user)
+
+    # Write the user in the more table like file
+    with open('./tables/table.txt', 'w') as f:
+        f.write(tabulate(lista, headers='firstrow', tablefmt='fancy_grid'))
 
 # função de pegar a imagem pelo app
 def getImage(url):
@@ -70,7 +84,7 @@ def thread_function(i):
     for j in range(0, i):
         pic = getImage(URL)
         cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
-        sharpen_photo(0)
+        # sharpen_photo(0)
         print("photo "+str(j)+" taken")
         time.sleep(1)
 
