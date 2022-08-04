@@ -11,17 +11,16 @@ import ast
 #import urllib.request
 
 # URL from the IP webcam
+global URL
 URL = "http://192.168.0.15:8080/shot.jpg"
  
 def main():
     # create the directory images
-    if not os.path.exists("images"):
-        os.mkdir("images")
+    # if not os.path.exists("images"):
+    #     os.mkdir("images")
 
     # Começa a thread que vai fazer as fotos serem tiradas
-    x = threading.Thread(target=thread_function, args=(1,), daemon=True)
-    x.start()
-    x.join()
+    takePhoto(1)
 
     # Photos done and in the images dir
     print("Done!")
@@ -38,24 +37,28 @@ def main():
     inp = input("Want to add hair? (Y) (N): ")
     if (inp.upper() == "Y"):
         hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-        Hair(hair)
+        # Hair(hair)
 
     inp = input("Want to add accessories? (Y) (N): ")
     if (inp.upper() == "Y"):
         accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-        Accessories(accessories)
+        # Accessories(accessories)
     
-    input("Type enter to continue the process!")
+    # input("Type enter to continue the process!")
 
     # It makes the pose to take the photo
-    os.system("start ./DAZ3D_Scripts/poseTest.duf")
-    input("Type enter to continue the process!")
+    # os.system("start ./DAZ3D_Scripts/poseTest.duf")
+    # input("Type enter to continue the process!")
 
     # Takes the photo of the character
-    os.system("start ./DAZ3D_Scripts/takePhoto.dsa")
+    # os.system("start ./DAZ3D_Scripts/takePhoto.dsa")
 ## Find a way to know when the file is done and stop when its not done
 
     # Open the table for the arquive
+    dbWrite(name, sex, hair, accessories, email)
+
+        
+def dbWrite(name, sex, hair, accessories, email):
     f = open('./tables/listTable.txt', 'r')
     file_contents = f.read()
     lista = ast.literal_eval(file_contents)
@@ -70,6 +73,11 @@ def main():
     with open('./tables/table.txt', 'w') as f:
         f.write(tabulate(lista, headers='firstrow', tablefmt='fancy_grid'))
 
+def takePhoto(x):
+    x = threading.Thread(target=thread_function, args=(x,), daemon=True)
+    x.start()
+    x.join()
+
 # função de pegar a imagem pelo app
 def getImage(url):
     img_resp = requests.get(url)
@@ -81,9 +89,13 @@ def getImage(url):
 # essa é a função da thread, que é rodar independemente do main 
 # para salvar as fotos em outro local
 def thread_function(i):
+    with open('./tables/listTable.txt', 'r') as f:
+        file_contents = f.read()
+        lista = ast.literal_eval(file_contents)
+
     for j in range(0, i):
         pic = getImage(URL)
-        cv2.imwrite("./images/pic"+str(j)+".jpg", pic)
+        cv2.imwrite("./images/pic"+str(lista[len(lista)-1][0] + 1)+".jpg", pic)
         # sharpen_photo(0)
         print("photo "+str(j)+" taken")
         time.sleep(1)
