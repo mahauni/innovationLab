@@ -1,8 +1,10 @@
 from flask import Flask, render_template, url_for, request, redirect
 import os
 import funcs
+import ast
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = './images'
 
 @app.route('/form')
 def index():
@@ -28,7 +30,12 @@ def initial():
 @app.route('/photo')
 def takingPhoto():
     funcs.takePhoto()
-    return render_template("index.html arrumar aqui")
+    with open('./tables/table.txt', 'w') as f:
+        file_contents = f.read()
+        lista = ast.literal_eval(file_contents)
+
+    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg')
+    return render_template("photo.html", user_image = full_filename)
 
 if __name__ == "__main__":
     if not os.path.exists("images"):
