@@ -29,12 +29,18 @@ def initial():
 
 @app.route('/photo')
 def takingPhoto():
-    funcs.takePhoto()
-    with open('./tables/table.txt', 'w') as f:
-        file_contents = f.read()
-        lista = ast.literal_eval(file_contents)
+    funcs.takePhoto(1)
 
-    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg')
+    # with open('./tables/table.txt', 'w') as f:
+    #   file_contents = f.read()
+    #   lista = ast.literal_eval(file_contents)
+
+    # full_filename = os.path.join(app.config['UPLOAD_FOLDER'], './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg')
+    # return render_template("photo.html", user_image = full_filename)
+
+
+    # NOT WORKING
+    full_filename = './../images/pic1.jpg'
     return render_template("photo.html", user_image = full_filename)
 
 if __name__ == "__main__":
