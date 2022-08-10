@@ -96,6 +96,7 @@ def thread_function(i):
     for j in range(0, i):
         pic = getImage(URL)
         cv2.imwrite("./images/pic"+str(lista[len(lista)-1][0] + 1)+".jpg", pic)
+        cv2.imwrite("./static/IMG/image.jpg", pic)
         # sharpen_photo(0)
         print("photo "+str(j)+" taken")
         time.sleep(1)

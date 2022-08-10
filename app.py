@@ -4,7 +4,7 @@ import funcs
 import ast
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './images'
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'IMG')
 
 @app.route('/form')
 def index():
@@ -40,10 +40,15 @@ def takingPhoto():
 
 
     # NOT WORKING
-    full_filename = './../images/pic1.jpg'
+    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
     return render_template("photo.html", user_image = full_filename)
 
 if __name__ == "__main__":
     if not os.path.exists("images"):
         os.mkdir("images")
+
+    if not os.path.exists("./static"):
+        os.mkdir("static")
+        os.mkdir("./static/IMG")
+
     app.run(debug=True)
