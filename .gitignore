@@ -3,8 +3,12 @@
 
 /tests
 
-/tables
+/tables/listTable.txt
+/tables/table.txt
 
 __pycache__/
 
 /static
+
+*.env
+!example.env

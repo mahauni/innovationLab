@@ -8,9 +8,13 @@ import threading
 import time
 from tabulate import tabulate
 import ast
+from dotenv import dotenv_values
 #import urllib.request
 
 # URL from the IP webcam
+global URL
+config = dotenv_values("./.env") 
+URL = config['URL']
 
 def main():
     # create the directory images
