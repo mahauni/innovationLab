@@ -12,3 +12,5 @@ __pycache__/
 
 *.env
 !example.env
+
+/DAZ3D_Scripts
