@@ -11,9 +11,7 @@ import ast
 #import urllib.request
 
 # URL from the IP webcam
-global URL
-URL = "http://192.168.0.15:8080/shot.jpg"
- 
+
 def main():
     # create the directory images
     # if not os.path.exists("images"):
@@ -30,7 +28,7 @@ def main():
     name = input("Type your name: ")
 
     email = input("Type your email: ")
-    
+
     sex = input("Which sex are you? (M) (F): ")
 
     # Cosmetics selection
@@ -43,7 +41,7 @@ def main():
     if (inp.upper() == "Y"):
         accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
         # Accessories(accessories)
-    
+
     # input("Type enter to continue the process!")
 
     # It makes the pose to take the photo
@@ -57,7 +55,7 @@ def main():
     # Open the table for the arquive
     dbWrite(name, sex, hair, accessories, email)
 
-        
+
 def dbWrite(name, sex, hair, accessories, email):
     f = open('./tables/listTable.txt', 'r')
     file_contents = f.read()
@@ -106,7 +104,7 @@ def sharpen_photo(j):
     sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
     sharpen = cv2.filter2D(image, -1, sharpen_kernel)
     cv2.imwrite("./images/sharpenPic"+str(j)+".jpg", sharpen)
-    
+
 def Hair(x):
     if x == 1:
         os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
@@ -125,8 +123,8 @@ def Accessories(x):
     elif x == 3:
         os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
     elif x == 4:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")    
+        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
 
-# Main
+# Main if you want to run this file alone
 if __name__ == "__main__":
     main()
