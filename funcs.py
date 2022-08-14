@@ -75,6 +75,10 @@ def dbWrite(name, sex, hair, accessories, email):
     with open('./tables/table.txt', 'w') as f:
         f.write(tabulate(lista, headers='firstrow', tablefmt='fancy_grid'))
 
+    # Write the list for the next user
+    with open('./tables/listTable.txt', 'w') as f:
+        f.write(lista)
+
 def takePhoto(x):
     x = threading.Thread(target=thread_function, args=(x,), daemon=True)
     x.start()
