@@ -3,8 +3,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
         <title> Document </title>
     </head>
 
@@ -12,7 +10,7 @@
         <h1>The select form attribute</h1>
 
         <form action="/postend" method="POST">
-            <label for="name">Name:</label>
+            <label for="nome">Name:</label>
             <input type="text" name="nome"><br><br>
             <select name="sex">
                 {% for o in sexData %}
