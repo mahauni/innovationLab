@@ -61,23 +61,24 @@ def main():
 
 
 def dbWrite(name, sex, hair, accessories, email):
-    f = open('./tables/listTable.txt', 'r')
-    file_contents = f.read()
-    lista = ast.literal_eval(file_contents)
-    f.close()
+    with open('./tables/listTable.txt', 'r') as f:
+        file_contents = f.read()
+        lista = ast.literal_eval(file_contents)
+
 
     user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
+
 
     # Add the user
     lista.append(user)
 
     # Write the user in the more table like file
-    with open('./tables/table.txt', 'w') as f:
-        f.write(tabulate(lista, headers='firstrow', tablefmt='fancy_grid'))
+    with open('./tables/table.txt', 'w') as fi:
+        fi.write(tabulate(lista, headers='firstrow', tablefmt='fancy_grid'))
 
     # Write the list for the next user
-    with open('./tables/listTable.txt', 'w') as f:
-        f.write(lista)
+    with open('./tables/listTable.txt', 'w') as fil:
+        fil.write(str(lista))
 
 def takePhoto(x):
     x = threading.Thread(target=thread_function, args=(x,), daemon=True)

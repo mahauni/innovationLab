@@ -15,7 +15,7 @@ def index():
 
 @app.route('/postend', methods=['POST', 'GET'])
 def postend():
-    nome = request.form['nome']
+    nome = request.form['name']
     email = request.form['email']
     hair = request.form.get('hair')
     sex = request.form.get('sex')

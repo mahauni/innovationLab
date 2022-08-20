@@ -10,8 +10,8 @@
         <h1>The select form attribute</h1>
 
         <form action="/postend" method="POST">
-            <label for="nome">Name:</label>
-            <input type="text" name="nome"><br><br>
+            <label for="name">Name:</label>
+            <input type="text" name="name"><br><br>
             <select name="sex">
                 {% for o in sexData %}
                 <option value="{{ o.sex }}">{{ o.sex }}</option>
