@@ -47,8 +47,7 @@ if __name__ == "__main__":
     if not os.path.exists("images"):
         os.mkdir("images")
 
-    if not os.path.exists("./static"):
-        os.mkdir("static")
+    if not os.path.exists("./static/IMG"):
         os.mkdir("./static/IMG")
 
     app.run(debug=True)
