@@ -11,14 +11,18 @@
         <img src="{{ user_image }}" alt="Your Image">
 
         <br><br>
-        <p>Take another photo</p>
-        <form action="/photo">
-            <input type="submit">
-        </form>
-        <br><br>
-        <p>Go to select accessories</p>
-        <form action="/form">
-            <input type="submit">
-        </form>
+
+        <div class="photo">
+            <h1>Take another photo</h1>
+            <form action="/photo">
+                <input type="submit" value="Retake it">
+            </form>
+        </div>
+        <div class="acc">
+            <h1>Go to select accessories</h1>
+            <form action="/form">
+                <input type="submit" value="Continue">
+            </form>
+        </div>
     </body>
 </html>
