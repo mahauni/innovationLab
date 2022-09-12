@@ -31,15 +31,6 @@ def initial():
 def takingPhoto():
     funcs.takePhoto(1)
 
-    # with open('./tables/table.txt', 'w') as f:
-    #   file_contents = f.read()
-    #   lista = ast.literal_eval(file_contents)
-
-    # full_filename = os.path.join(app.config['UPLOAD_FOLDER'], './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg')
-    # return render_template("photo.html", user_image = full_filename)
-
-
-    # NOT WORKING
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
     return render_template("photo.html", user_image = full_filename)
 

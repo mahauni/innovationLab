@@ -17,10 +17,6 @@ config = dotenv_values("./.env")
 URL = config['URL']
 
 def main():
-    # create the directory images
-    # if not os.path.exists("images"):
-    #     os.mkdir("images")
-
     # Começa a thread que vai fazer as fotos serem tiradas
     takePhoto(1)
 
@@ -44,19 +40,7 @@ def main():
     inp = input("Want to add accessories? (Y) (N): ")
     if (inp.upper() == "Y"):
         accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-        # Accessories(accessories)
 
-    # input("Type enter to continue the process!")
-
-    # It makes the pose to take the photo
-    # os.system("start ./DAZ3D_Scripts/poseTest.duf")
-    # input("Type enter to continue the process!")
-
-    # Takes the photo of the character
-    # os.system("start ./DAZ3D_Scripts/takePhoto.dsa")
-## Find a way to know when the file is done and stop when its not done
-
-    # Open the table for the arquive
     dbWrite(name, sex, hair, accessories, email)
 
 
@@ -113,26 +97,6 @@ def sharpen_photo(j):
     sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
     sharpen = cv2.filter2D(image, -1, sharpen_kernel)
     cv2.imwrite("./images/sharpenPic"+str(j)+".jpg", sharpen)
-
-def Hair(x):
-    if x == 1:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 2:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 3:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 4:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-
-def Accessories(x):
-    if x == 1:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 2:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 3:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
-    elif x == 4:
-        os.system("start ./DAZ3D_Scripts/HairSelect/Armani Hair.duf")
 
 # Main if you want to run this file alone
 if __name__ == "__main__":
