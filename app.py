@@ -8,7 +8,7 @@ app.config['UPLOAD_FOLDER'] = os.path.join('static', 'IMG')
 
 @app.route('/form')
 def index():
-    return render_template("index.html",
+    return render_template("Attributes.html",
     hairData = [{'hair': 'Encaracolado'}, {'hair': 'Longo'}, {'hair': 'Curto'}, {'hair': 'Tijela'}],
     sexData = [{'sex': 'F'}, {'sex': 'M'}],
     accData = [{'acc': 'Brinco'}, {'acc': 'Colar'}])
@@ -17,9 +17,9 @@ def index():
 def postend():
     nome = request.form['name']
     email = request.form['email']
-    hair = request.form.get('hair')
-    sex = request.form.get('sex')
-    acessories = request.form.get('acce')
+    hair = request.form['hair']
+    sex = request.form['sex']
+    acessories = request.form['acce']
     funcs.dbWrite(nome, sex, hair, acessories, email)
     return render_template("postend.html")
 

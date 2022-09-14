@@ -1,28 +1,76 @@
 <!DOCTYPE html>
-
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/photo.css') }}">
-        <title> Document </title>
-    </head>
+<html style="font-size: 16px;" lang="pt"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Photo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/geral.css') }}" media="screen">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/photo.css') }}" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <meta name="theme-color" content="#232b79">
+    <meta property="og:title" content="Photo">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="pt"><header class="u-clearfix u-grey-80 u-header u-header" id="sec-a184"><div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-sheet-1">
+        <nav class="u-align-left u-menu u-menu-one-level u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 500;">
+            <a class="u-button-style u-custom-active-color u-custom-border u-custom-border-color u-custom-border-radius u-custom-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-file-icon u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-file-icon-1" href="#">
+              <img src="images/149187.png" alt="">
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-10 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-radius-18 u-text-active-custom-color-1 u-text-grey-90 u-text-hover-custom-color-2" href="Principal-Page.html" style="padding: 10px 20px;">Principal Page</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-radius-18 u-text-active-custom-color-1 u-text-grey-90 u-text-hover-custom-color-2" href="Attributes.html" style="padding: 10px 20px;">Attributes</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-radius-18 u-text-active-custom-color-1 u-text-grey-90 u-text-hover-custom-color-2" href="Photo.html" style="padding: 10px 20px;">Photo</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-radius-18 u-text-active-custom-color-1 u-text-grey-90 u-text-hover-custom-color-2" href="Postend.html" style="padding: 10px 20px;">Postend</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-85 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-align-left-xs u-nav u-popupmenu-items u-spacing-15 u-text-active-custom-color-1 u-text-hover-custom-color-2 u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Principal-Page.html">Principal Page</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Attributes.html">Attributes</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Photo.html">Photo</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Postend.html">Postend</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+    <section class="u-clearfix u-white u-section-1" id="sec-18ee">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-size-20-md u-layout-cell-1" src="">
+                <div class="u-container-layout u-container-layout-1" src=""></div>
+              </div>
+              <div class="u-align-left u-container-style u-image u-layout-cell u-size-20 u-size-20-md u-image-1" src="" data-image-width="1080" data-image-height="1080">
+                <div class="u-container-layout u-valign-middle u-container-layout-2" src=""><img src="{{ user_image }}" alt="Your Image"></div>
+              </div>
+              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-size-20-md u-layout-cell-3">
+                <div class="u-container-layout u-container-layout-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     
-    <body>
-        <img src="{{ user_image }}" alt="Your Image">
-
-        <br><br>
-
-        <div class="photo">
-            <h1>Take another photo</h1>
-            <form action="/photo">
-                <input type="submit" value="Retake it">
-            </form>
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b796"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <form action="/form">
+        <div class="u-align-center u-form-group u-form-submit">
+          <input type="submit" value="Next" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-grey-90 u-radius-19 u-btn-1">
         </div>
-        <div class="acc">
-            <h1>Go to select accessories</h1>
-            <form action="/form">
-                <input type="submit" value="Continue">
-            </form>
-        </div>
-    </body>
-</html>
+      </form>
+      </div></footer>
+    
+      
+  
+</body></html>
