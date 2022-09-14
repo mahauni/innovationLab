@@ -57,7 +57,7 @@
               <label for="select-9570" class="u-label">Sex</label>
               <div class="u-form-select-wrapper">
                 <select id="select-9570" name="sex" class="u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-18 u-white" required="required">
-                  <option value="--------------------">--------------------</option>
+                  <option disabled selected value> -- select an option -- </option>
                   {% for o in sexData %}
                     <option value="{{ o.sex }}">{{ o.sex }}</option>
                   {% endfor %}
@@ -76,7 +76,7 @@
               <label for="select-9405" class="u-label">Choose a Hairstyle</label>
               <div class="u-form-select-wrapper">
                 <select id="select-9405" name="hair" class="u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-18 u-white" required="required">
-                  <option value="--------------------">--------------------</option>
+                  <option disabled selected value> -- select an option -- </option>
                   {% for o in hairData %}
                     <option value="{{ o.hair }}">{{ o.hair }}</option>
                   {% endfor %}
@@ -89,7 +89,7 @@
               <label for="acce" class="u-label">Choose an accessory:</label>
               <div class="u-form-select-wrapper">
                 <select id="select-0495" name="acce" class="u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-18 u-white" required="required">
-                  <option value="--------------------">--------------------</option>
+                  <option disabled selected value> -- select an option -- </option>
                   {% for o in accData %}
                     <option value="{{ o.acc }}">{{ o.acc }}</option>
                   {% endfor %}
