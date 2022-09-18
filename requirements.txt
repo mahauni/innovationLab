@@ -3,6 +3,5 @@ imutils
 requests
 numpy
 tabulate
-ast
-flask
+Flask
 python-dotenv
