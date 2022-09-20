@@ -40,10 +40,26 @@
   .u-section-1 .u-form-1 {
     width: 540px;
   }
+  .u-section-1 .u-image-1 {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 575px) {
   .u-section-1 .u-form-1 {
     width: 340px;
   }
+  .u-section-1 .u-image-1 {
+    margin-top: 0;
+  }
+}
+
+.u-section-1 .u-image-1 {
+  width: 161px;
+  height: 161px;
+  margin: 12px auto 0 41px;
+}
+
+.new img{
+  float: left;
 }

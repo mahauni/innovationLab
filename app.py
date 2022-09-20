@@ -8,10 +8,24 @@ app.config['UPLOAD_FOLDER'] = os.path.join('static', 'IMG')
 
 @app.route('/form')
 def index():
+    PathHair1 = os.path.join(app.config['UPLOAD_FOLDER'], 'ArmaniHair.png')
+    PathHair2 = os.path.join(app.config['UPLOAD_FOLDER'], 'BasicHair.png')
+    PathHair3 = os.path.join(app.config['UPLOAD_FOLDER'], 'LaurenHair.duf.png')
+    PathHair4 = os.path.join(app.config['UPLOAD_FOLDER'], 'ToulouseGenesis2Female.png')
+    PathAcc1 = os.path.join(app.config['UPLOAD_FOLDER'], 'Earring.png')
+    PathAcc2 = os.path.join(app.config['UPLOAD_FOLDER'], 'Collar.png')
+    PathAcc3 = os.path.join(app.config['UPLOAD_FOLDER'], 'Collar2.png')
     return render_template("Attributes.html",
-    hairData = [{'hair': 'Encaracolado'}, {'hair': 'Longo'}, {'hair': 'Curto'}, {'hair': 'Tijela'}],
+    hairData = [{'hair': 'cabelo 1'}, {'hair': 'cabelo 2'}, {'hair': 'cabelo 3'}, {'hair': 'cabelo 4'}],
     sexData = [{'sex': 'F'}, {'sex': 'M'}],
-    accData = [{'acc': 'Brinco'}, {'acc': 'Colar'}])
+    accData = [{'acc': 'Brinco'}, {'acc': 'Colar 1'}, {'acc': 'Colar 2'}],
+    hair1 = PathHair1,
+    hair2 = PathHair2,
+    hair3 = PathHair3,
+    hair4 = PathHair4,
+    acc1 = PathAcc1,
+    acc2 = PathAcc2,
+    acc3 = PathAcc3)
 
 @app.route('/postend', methods=['POST', 'GET'])
 def postend():
@@ -30,15 +44,14 @@ def initial():
 @app.route('/photo')
 def takingPhoto():
     funcs.takePhoto(1)
-
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
+    # joga no database
+    # pega a foto do database e manda colocar em um path conhecido
+    # ai é : user_image = PATH conhecido
     return render_template("photo.html", user_image = full_filename)
 
 if __name__ == "__main__":
     if not os.path.exists("images"):
         os.mkdir("images")
-
-    if not os.path.exists("./static/IMG"):
-        os.mkdir("./static/IMG")
 
     app.run(debug=True)

@@ -8,7 +8,7 @@
 
 __pycache__/
 
-/static/IMG
+/static/IMG/image.jpg
 
 *.env
 !example.env
