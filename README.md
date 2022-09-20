@@ -12,6 +12,20 @@ Made in pyton 3.9.13
  If there are other possibles apps and ways to do the save image thing, Im all ears
  And in the constant URL, you will need to put your device url to make it work
 
+How to start with this repo
+===========================
 
-install dependencies with: 
-pip install -r requirements.txt
+Install all dependencies with: 
+```bash
+$ pip install -r requirements.txt
+```
+
+After the installation create a .env file with:
+```bash
+URL=YOUR_URL_FROM_OPENCV
+```
+
+And run your app with:
+```bash
+$ python3 app.py
+```
