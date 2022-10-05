@@ -43,11 +43,16 @@ def initial():
 
 @app.route('/photo')
 def takingPhoto():
-    funcs.takePhoto(1)
+    # tira foto com o open-cv e coloca em uma pasta
+    # funcs.takePhoto(1)
+
+    # path onde a foto deverá ficar
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
-    # joga no database
-    # pega a foto do database e manda colocar em um path conhecido
-    # ai é : user_image = PATH conhecido
+   
+    # fazer o download da imagem pelo s3
+    funcs.downloadS3('avataring-img', full_filename)
+    
+    # pagina com uma user image
     return render_template("photo.html", user_image = full_filename)
 
 if __name__ == "__main__":

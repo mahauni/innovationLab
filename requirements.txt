@@ -5,3 +5,4 @@ numpy
 tabulate
 Flask
 python-dotenv
+boto3

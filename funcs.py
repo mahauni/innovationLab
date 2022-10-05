@@ -1,5 +1,6 @@
 # Usar OpenCv para utilizar a camera do celular e tirar fotos
 import cv2
+from main import ACCESS_KEY, SECRET_KEY
 import numpy as np
 import os
 import requests
@@ -9,12 +10,16 @@ import time
 from tabulate import tabulate
 import ast
 from dotenv import dotenv_values
+import boto3
+from boto3.session import Session
 #import urllib.request
 
 # URL from the IP webcam
 global URL
 config = dotenv_values("./.env") 
 URL = config['URL']
+ACCESS_KEY = config['ACCESS_KEY']
+SECRET_KEY = config['SECRET_KEY']
 
 def main():
     # Começa a thread que vai fazer as fotos serem tiradas
@@ -97,6 +102,25 @@ def sharpen_photo(j):
     sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
     sharpen = cv2.filter2D(image, -1, sharpen_kernel)
     cv2.imwrite("./images/sharpenPic"+str(j)+".jpg", sharpen)
+
+def downloadS3(bucket, path):
+    # session = Session(aws_access_key_id=ACCESS_KEY,
+    #             aws_secret_access_key=SECRET_KEY)
+    # s3 = session.resource('s3')
+    # your_bucket = s3.Bucket(bucket)
+
+    # for s3_file in your_bucket.objects.all():
+    #     print(s3_file.key) # prints the contents of bucket
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
+                      aws_secret_access_key=SECRET_KEY)
+
+    # get last updated photo which is the photo we just took
+    get_last_modified = lambda obj: int(obj['LastModified'].strftime('%s'))
+
+    objs = s3.list_objects_v2(Bucket='avataring-img')['Contents']
+    last_added = [obj['Key'] for obj in sorted(objs, key=get_last_modified)][-1]
+
+    s3.download_file(bucket, last_added, path)
 
 # Main if you want to run this file alone
 if __name__ == "__main__":

@@ -29,3 +29,9 @@ And run your app with:
 ```bash
 $ python3 app.py
 ```
+
+# TODO:
+
+- Colocar todas as informações no dynamo
+- Arrumar um jeito de tentar pegar os ids das fotos uplodadas
+- tentar fazer um modo separado para que seja possivel nós comandamos de fomra mais facil.
