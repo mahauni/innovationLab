@@ -12,6 +12,7 @@ import ast
 from dotenv import dotenv_values
 import boto3
 from boto3.session import Session
+from botocore.exceptions import NoCredentialsError
 #import urllib.request
 
 # URL from the IP webcam
@@ -21,41 +22,13 @@ URL = config['URL']
 ACCESS_KEY = config['ACCESS_KEY']
 SECRET_KEY = config['SECRET_KEY']
 
-def main():
-    # Começa a thread que vai fazer as fotos serem tiradas
-    takePhoto(1)
-
-    # Photos done and in the images dir
-    print("Done!")
-    print("After the process of virtualization.")
-    input("Type enter to continue the process!")
-
-    name = input("Type your name: ")
-
-    email = input("Type your email: ")
-
-    sex = input("Which sex are you? (M) (F): ")
-
-    # Cosmetics selection
-    inp = input("Want to add hair? (Y) (N): ")
-    if (inp.upper() == "Y"):
-        hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-        # Hair(hair)
-
-    inp = input("Want to add accessories? (Y) (N): ")
-    if (inp.upper() == "Y"):
-        accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-
-    dbWrite(name, sex, hair, accessories, email)
-
-
 def dbWrite(name, sex, hair, accessories, email):
     with open('./tables/listTable.txt', 'r') as f:
         file_contents = f.read()
         lista = ast.literal_eval(file_contents)
 
 
-    user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, './imagens/pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
+    user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
 
 
     # Add the user
@@ -122,6 +95,50 @@ def downloadS3(bucket, path):
 
     s3.download_file(bucket, last_added, path)
 
+    # another way to get the file with the name you put in the aws
+    # s3.download_file(bucket, name, path)
+
+def uploadToS3(local_file, bucket, s3_file):
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
+                      aws_secret_access_key=SECRET_KEY)
+
+    try:
+        s3.upload_file(local_file, bucket, s3_file)
+        print("Upload Successful")
+        return True
+    except FileNotFoundError:
+        print("The file was not found")
+        return False
+    except NoCredentialsError:
+        print("Credentials not available")
+        return False
+
+
+
 # Main if you want to run this file alone
 if __name__ == "__main__":
-    main()
+
+    takePhoto(1)
+
+    # Photos done and in the images dir
+    print("Done!")
+    print("After the process of virtualization.")
+    input("Type enter to continue the process!")
+
+    name = input("Type your name: ")
+
+    email = input("Type your email: ")
+
+    sex = input("Which sex are you? (M) (F): ")
+
+    # Cosmetics selection
+    inp = input("Want to add hair? (Y) (N): ")
+    if (inp.upper() == "Y"):
+        hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
+        # Hair(hair)
+
+    inp = input("Want to add accessories? (Y) (N): ")
+    if (inp.upper() == "Y"):
+        accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
+
+    dbWrite(name, sex, hair, accessories, email)
