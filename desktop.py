@@ -2,7 +2,7 @@ from distutils.command.upload import upload
 import funcs
 import os
 import ast
-import tabulate
+from tabulate import tabulate
 
 def main():
     while True:
