@@ -1,6 +1,5 @@
 # Usar OpenCv para utilizar a camera do celular e tirar fotos
 import cv2
-from main import ACCESS_KEY, SECRET_KEY
 import numpy as np
 import os
 import requests
@@ -30,9 +29,22 @@ def dbWrite(name, sex, hair, accessories, email):
 
     user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
 
-
     # Add the user
     lista.append(user)
+
+    db = boto3.resource('dynamodb', region_name='us-east-1',  aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
+    table = db.Table("avataringDb")
+
+    table.put_item(
+        Item={
+        "email": email,
+        "acessorio": str(accessories),
+        "cabelo": str(hair),
+        "idImagem": 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg',
+        "nome": name,
+        "sexo": sex
+        }
+    )
 
     # Write the user in the more table like file
     with open('./tables/table.txt', 'w') as fi:
@@ -113,32 +125,33 @@ def uploadToS3(local_file, bucket, s3_file):
         print("Credentials not available")
         return False
 
-
+def main():
+    print("start")
 
 # Main if you want to run this file alone
 if __name__ == "__main__":
+    main()
+    # takePhoto(1)
 
-    takePhoto(1)
+    # # Photos done and in the images dir
+    # print("Done!")
+    # print("After the process of virtualization.")
+    # input("Type enter to continue the process!")
 
-    # Photos done and in the images dir
-    print("Done!")
-    print("After the process of virtualization.")
-    input("Type enter to continue the process!")
+    # name = input("Type your name: ")
 
-    name = input("Type your name: ")
+    # email = input("Type your email: ")
 
-    email = input("Type your email: ")
+    # sex = input("Which sex are you? (M) (F): ")
 
-    sex = input("Which sex are you? (M) (F): ")
+    # # Cosmetics selection
+    # inp = input("Want to add hair? (Y) (N): ")
+    # if (inp.upper() == "Y"):
+    #     hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
+    #     # Hair(hair)
 
-    # Cosmetics selection
-    inp = input("Want to add hair? (Y) (N): ")
-    if (inp.upper() == "Y"):
-        hair = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-        # Hair(hair)
+    # inp = input("Want to add accessories? (Y) (N): ")
+    # if (inp.upper() == "Y"):
+    #     accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
 
-    inp = input("Want to add accessories? (Y) (N): ")
-    if (inp.upper() == "Y"):
-        accessories = int(input("Which type of hair do you like (1) (2) (3) (4): "))
-
-    dbWrite(name, sex, hair, accessories, email)
+    # dbWrite(name, sex, hair, accessories, email)

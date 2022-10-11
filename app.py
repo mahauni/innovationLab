@@ -16,7 +16,7 @@ def index():
     PathAcc2 = os.path.join(app.config['UPLOAD_FOLDER'], 'Collar.png')
     PathAcc3 = os.path.join(app.config['UPLOAD_FOLDER'], 'Collar2.png')
     return render_template("Attributes.html",
-    hairData = [{'hair': 'cabelo 1'}, {'hair': 'cabelo 2'}, {'hair': 'cabelo 3'}, {'hair': 'cabelo 4'}],
+    hairData = [{'hair': 'Cabelo 1'}, {'hair': 'Cabelo 2'}, {'hair': 'Cabelo 3'}, {'hair': 'Cabelo 4'}],
     sexData = [{'sex': 'F'}, {'sex': 'M'}],
     accData = [{'acc': 'Brinco'}, {'acc': 'Colar 1'}, {'acc': 'Colar 2'}],
     hair1 = PathHair1,

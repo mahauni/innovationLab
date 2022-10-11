@@ -2,12 +2,16 @@ from distutils.command.upload import upload
 import funcs
 import os
 import ast
+import tabulate
 
 def main():
-    while true:
-        print("take the photo: (press enter)")
-        funcs.takePhoto(1)
-
+    while True:
+        input("take the photo: (press enter)")
+        cont = 1
+        while (cont == 1):
+            funcs.takePhoto(1)
+            if (input("want to continue YES (0) (1) \n") != 1):
+                cont = 0
         fileName = os.path.join("./static/IMG/", "image.jpg")
 
 
