@@ -40,7 +40,7 @@ def dbWrite(name, sex, hair, accessories, email):
         "email": email,
         "acessorio": str(accessories),
         "cabelo": str(hair),
-        "idImagem": 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg',
+        "idImagem": email +'.jpg',
         "nome": name,
         "sexo": sex
         }
@@ -104,11 +104,21 @@ def downloadS3(bucket, path):
 
     objs = s3.list_objects_v2(Bucket='avataring-img')['Contents']
     last_added = [obj['Key'] for obj in sorted(objs, key=get_last_modified)][-1]
-
     s3.download_file(bucket, last_added, path)
 
     # another way to get the file with the name you put in the aws
     # s3.download_file(bucket, name, path)
+
+def downloadSpecificS3(bucket, filename, path):
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
+                      aws_secret_access_key=SECRET_KEY)
+
+    try:
+        s3.download_file(bucket, filename, path)
+        return "OK"
+    except:
+        return None
+
 
 def uploadToS3(local_file, bucket, s3_file):
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,

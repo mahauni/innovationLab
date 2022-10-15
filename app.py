@@ -55,6 +55,22 @@ def takingPhoto():
     # pagina com uma user image
     return render_template("photo.html", user_image = full_filename)
 
+
+@app.route('/myavattaringform')
+def myAvattaringForm():
+    return render_template("myAvattaringForm.html")
+
+@app.route("/myavattaring", methods=['POST', 'GET'])
+def myAvattaring():
+    email = request.form['email']
+    filename = email + ".jpg"
+    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    retFunc = funcs.downloadSpecificS3('avataring-img', filename, full_filename)
+    if retFunc is None:
+        return render_template("myAvattaring.html", user_image = "static/IMG/404.jpeg")
+    else:
+        return render_template("myAvattaring.html", user_image = full_filename)
+
 if __name__ == "__main__":
     if not os.path.exists("images"):
         os.mkdir("images")
