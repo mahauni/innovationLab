@@ -37,7 +37,7 @@ def postend():
     funcs.dbWrite(nome, sex, hair, acessories, email)
     return render_template("postend.html")
 
-@app.route('/')
+@app.route('/initial')
 def initial():
     return render_template('initial.html')
 
@@ -56,7 +56,7 @@ def takingPhoto():
     return render_template("photo.html", user_image = full_filename)
 
 
-@app.route('/myavattaringform')
+@app.route('/')
 def myAvattaringForm():
     return render_template("myAvattaringForm.html")
 
