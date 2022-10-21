@@ -23,7 +23,7 @@ def main():
         user = [lista[len(lista)-1][0] + 1, "name", "SEX", "hair", "accessories", 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', "email"]
 
 
-        uploaded = funcs.uploadToS3(fileName, 'avataring-img', lista[len(lista)-1][0] + 1 + '.jpg')
+        uploaded = funcs.uploadToS3(fileName, 'avataring-img', 'IMG' + str(lista[len(lista)-1][0] + 1) + '.jpg')
 
         # Add the user
         lista.append(user)

@@ -1,7 +1,9 @@
 import boto3
 from botocore.exceptions import NoCredentialsError
 from dotenv import dotenv_values
+from numpy import number
 from tabulate import tabulate
+import os
 
 config = dotenv_values("./.env") 
 ACCESS_KEY = config['ACCESS_KEY']
@@ -53,6 +55,9 @@ def downloadSpecificS3(bucket, filename, path):
 
 def main():
     dowloadFromDynamo()
+    number = input("digite o numero da foto da pessoa: ")
+    file_path = os.path.join("./", "image.jpg")
+    downloadSpecificS3('avataring-img', 'IMG' + number + ".jpg", file_path)
 
 if __name__ == "__main__":
     main()

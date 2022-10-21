@@ -27,10 +27,7 @@ def dbWrite(name, sex, hair, accessories, email):
         lista = ast.literal_eval(file_contents)
 
 
-    user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]
-
-    # Add the user
-    lista.append(user)
+    user = [lista[len(lista)-1][0] + 1, name, sex.upper(), hair, accessories, 'pic'+ str(lista[len(lista)-1][0] + 1) +'.jpg', email]    
 
     db = boto3.resource('dynamodb', region_name='us-east-1',  aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
     table = db.Table("avataringDb")
@@ -40,11 +37,14 @@ def dbWrite(name, sex, hair, accessories, email):
         "email": email,
         "acessorio": str(accessories),
         "cabelo": str(hair),
-        "idImagem": email +'.jpg',
+        "idImagem": 'IMG' + str(lista[len(lista)-1][0] + 1) +'.jpg',
         "nome": name,
         "sexo": sex
         }
     )
+
+    # Add the user
+    lista.append(user)
 
     # Write the user in the more table like file
     with open('./tables/table.txt', 'w') as fi:
