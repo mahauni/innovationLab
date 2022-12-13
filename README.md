@@ -1,4 +1,4 @@
-# isso é o arquivo principal do innovation lab
+# Principal repo of the innovation Lab
 
 Made in pyton 3.9.13
  
