@@ -1,4 +1,4 @@
-# isso é o arquivo principal do innovation lab
+# Principal repo of the innovation Lab
 
 Made in pyton 3.9.13
  
@@ -23,6 +23,9 @@ $ pip install -r requirements.txt
 After the installation create a .env file with:
 ```bash
 URL=YOUR_URL_FROM_OPENCV
+
+ACCESS_KEY=AWS_ACCESS_KEY
+PRIVATE_KEY=AWS_PRIVATE_KEY
 ```
 
 And run your app with:
@@ -32,6 +35,4 @@ $ python3 app.py
 
 # TODO:
 
-- Colocar todas as informações no dynamo
-- Arrumar um jeito de tentar pegar os ids das fotos uplodadas
-- tentar fazer um modo separado para que seja possivel nós comandamos de fomra mais facil.
+- Make a way to do the things with only a click
