@@ -62,3 +62,6 @@ def main():
 if __name__ == "__main__":
     main()
 
+    #image_path = os.path.join("./", 'avatar.png')
+    #uploadToS3(image_path, 'avataring-img', 'email_of_person_who_took_the_photo.com.jpg')
+

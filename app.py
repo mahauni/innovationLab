@@ -37,7 +37,7 @@ def postend():
     funcs.dbWrite(nome, sex, hair, acessories, email)
     return render_template("postend.html")
 
-@app.route('/initial')
+@app.route('/')
 def initial():
     return render_template('initial.html')
 
